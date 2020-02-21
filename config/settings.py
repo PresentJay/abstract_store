@@ -29,15 +29,26 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_AOOS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phone_field',
 ]
+
+PROJECT_APPS =[
+    "boards.apps.BoardsConfig",
+    "items.apps.ItemsConfig",
+    "lists.apps.ListsConfig",
+    "reviews.apps.ReviewsConfig",
+    "users.apps.UsersConfig",
+    "core.apps.CoreConfig",
+]
+
+INSTALLED_APPS = DJANGO_AOOS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,3 +129,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = "users.User"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+MEDIA_URL = "/media/"

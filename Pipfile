@@ -6,7 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
+django = "==2.2.5"
+django-phone-field = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
