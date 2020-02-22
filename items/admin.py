@@ -1,16 +1,18 @@
 from django.contrib import admin
 from . import models
+from photos import admin as phtos_admin
 
 # Register your models here.
 @admin.register(models.Item)
 class ItemAdmin(admin.ModelAdmin):
+    inlines= (phtos_admin.PhotoInline,)
+    
     fieldsets = (
         (
             "Product Info",
             {
                 "fields" : (
                     "name",
-                    "image",
                     "description",
                     "price",
                     "product",
@@ -24,7 +26,6 @@ class ItemAdmin(admin.ModelAdmin):
     
     list_display = (
         "name",
-        "image",
         "description",
         "price",
         "product",

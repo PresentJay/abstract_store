@@ -43,7 +43,7 @@ PROJECT_APPS =[
     "boards.apps.BoardsConfig",
     "items.apps.ItemsConfig",
     "lists.apps.ListsConfig",
-    "reviews.apps.ReviewsConfig",
+    "photos.apps.PhotosConfig",
     "users.apps.UsersConfig",
     "core.apps.CoreConfig",
 ]
@@ -65,7 +65,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

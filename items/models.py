@@ -16,7 +16,6 @@ class Option(models.Model):
         return self.option_name
     
 class Item(core_models.TimeStampedModel):
-    image = models.ImageField(blank=True)
     name = models.CharField(max_length=1024)
     description = models.TextField(blank=True)
     price = models.IntegerField()
@@ -26,3 +25,6 @@ class Item(core_models.TimeStampedModel):
     option = models.ManyToManyField("Option", related_name="items", blank=True )
     
     status.boolean = True
+    
+    def __str__(self):
+        return self.name

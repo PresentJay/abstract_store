@@ -4,7 +4,6 @@ from django.db import models
 
 # Create your models here.
 class User(AbstractUser):
-    
     name = models.CharField(max_length = 10)
     address1 = models.CharField(max_length=1024)
     address2 = models.CharField(max_length=1024)
