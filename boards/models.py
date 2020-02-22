@@ -5,6 +5,9 @@ from core import models as core_models
 class BoardBaseModel(core_models.TimeStampedModel):
     title = models.CharField(max_length=80)
     description = models.TextField()
+    
+    class Meta:
+        abstract = True
 
 class Review(BoardBaseModel):
     user = models.ForeignKey("users.User", related_name="reviews", on_delete=models.CASCADE)

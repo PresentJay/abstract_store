@@ -37,6 +37,8 @@ DJANGO_AOOS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phone_field',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 PROJECT_APPS =[
@@ -134,3 +136,6 @@ AUTH_USER_MODEL = "users.User"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
+
+CKEDITOR_UPLOAD_PATH = "uploads/test/"
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
