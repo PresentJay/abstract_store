@@ -1,6 +1,7 @@
 from django.db import models
 from core import models as core_models
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class Tag(models.Model):
@@ -29,7 +30,7 @@ class Item(core_models.TimeStampedModel):
     category = models.ManyToManyField("Category", related_name="items", blank=True)
     status = models.BooleanField(default=True)
     price = models.IntegerField()
-    description = RichTextField()
+    description = RichTextUploadingField(null=True, blank=True)
     option = models.ManyToManyField("Option", related_name="items", blank=True)
     count = models.IntegerField()
     owner = models.ForeignKey("users.User", related_name="items", on_delete=models.CASCADE)
