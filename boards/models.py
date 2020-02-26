@@ -5,6 +5,9 @@ from core import models as core_models
 class BoardBaseModel(core_models.TimeStampedModel):
     title = models.CharField(max_length=80)
     description = models.TextField()
+    
+    class Meta:
+        abstract = True
 
 class Review(BoardBaseModel):
     user = models.ForeignKey("users.User", related_name="reviews", on_delete=models.CASCADE)
@@ -34,15 +37,3 @@ class Answer(models.Model):
     
     def __str__(self):
         return self.title
-    
-class Photo(models.Model):
-    caption = models.CharField(max_length=80)
-    file = models.ImageField(upload_to="board_photos")
-    
-    review = models.ForeignKey("Review",related_name="photos" , on_delete=models.CASCADE, null = True, blank=True)
-    question = models.ForeignKey("Question",related_name="photos" , on_delete=models.CASCADE, null = True, blank=True)
-    notice = models.ForeignKey("Notice",related_name="photos" , on_delete=models.CASCADE, null = True, blank=True)
-    answer = models.ForeignKey("Answer",related_name="photos" , on_delete=models.CASCADE, null = True, blank=True)
-    
-    def __str__(self):
-        return self.caption

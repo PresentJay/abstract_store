@@ -37,13 +37,15 @@ DJANGO_AOOS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phone_field',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 PROJECT_APPS =[
     "boards.apps.BoardsConfig",
     "items.apps.ItemsConfig",
     "lists.apps.ListsConfig",
-    "reviews.apps.ReviewsConfig",
+    "photos.apps.PhotosConfig",
     "users.apps.UsersConfig",
     "core.apps.CoreConfig",
 ]
@@ -65,7 +67,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +136,6 @@ AUTH_USER_MODEL = "users.User"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
+
+CKEDITOR_UPLOAD_PATH = "uploads/test/"
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
