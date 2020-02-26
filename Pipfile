@@ -9,18 +9,10 @@ autopep8 = "*"
 
 [packages]
 django-phone-field = "*"
-<<<<<<< HEAD
 django-ckeditor = "*"
 Django = "==2.2.5"
 Pillow = "*"
 pipenv-to-requirements = "*"
-=======
-pillow = "*"
-django-countries = "*"
-django-seed = "*"
-django-dotenv = "*"
-requests = "*"
->>>>>>> adjusting branches
 
 [requires]
 python_version = "3.7"

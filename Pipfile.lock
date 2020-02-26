@@ -1,23 +1,17 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
             "sha256": "3858caf33a152033916b8b7704716e582add1106a08b407139585c53ab8d97f7"
-=======
-            "sha256": "61b11b4dca17f16273bd141819c22bcebdb9cd32e642c9f6d88b7f28d848c1a5"
->>>>>>> adjusting branches
         },
         "pipfile-spec": 6,
         "requires": {
             "python_version": "3.7"
         },
-        "sources": [
-            {
-                "name": "pypi",
-                "url": "https://pypi.org/simple",
-                "verify_ssl": true
-            }
-        ]
+        "sources": [{
+            "name": "pypi",
+            "url": "https://pypi.org/simple",
+            "verify_ssl": true
+        }]
     },
     "default": {
         "appdirs": {

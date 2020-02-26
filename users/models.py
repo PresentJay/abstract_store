@@ -6,7 +6,6 @@ from django.db import models
 
 
 class User(AbstractUser):
-<<<<<<< HEAD
     GENDER_MALE = "male"
     GENDER_FEMALE = "female"
 
@@ -18,10 +17,6 @@ class User(AbstractUser):
     name = models.CharField(max_length=10)
     gender = models.CharField(choices=GENDER_CHOICES,
                               max_length=10, blank=True)
-=======
-
-    name = models.CharField(max_length=10)
->>>>>>> adjusting branches
     address1 = models.CharField(max_length=1024)
     address2 = models.CharField(max_length=1024)
     birthdate = models.DateField(null=True)
