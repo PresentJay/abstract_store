@@ -1,0 +1,9 @@
+<div class="w-1/4 mb-10 px-4 overflow-hidden">
+    <a href="{% url 'items:detail' item.pk %}">
+        <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2 " style="background-image: url({{item.thumbnail}})"></div>
+        <div>
+            <span class="text-sm text-gray-600 block truncate mb-2">{{item.name}}</span>
+            <span class="text-black w-11/12 block truncate">{{item.price}}원</span>
+        </div>
+    </a>
+</div>

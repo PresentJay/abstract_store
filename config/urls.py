@@ -18,9 +18,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path("", include("core.urls", namespace="core")),
+    path("", include("items.urls", namespace="items")),
+    path("", include("lists.urls", namespace="lists")),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

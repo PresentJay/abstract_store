@@ -9,7 +9,7 @@ class OrderListAdmin(admin.ModelAdmin):
             "Order List Info",
             {
                 "fields" : (
-                    "delivery_status",
+                    "status",
                     "user",
                 )
             }
@@ -18,92 +18,23 @@ class OrderListAdmin(admin.ModelAdmin):
             "Item Info",
             {
                 "fields" : (
-                    "image",
-                    "name",
+                    "item",
+                    "option",
                     "count",
                     "price",
-                    "option",
                 )
             }
         ),
     )
     
     list_display = (
+        "status",
         "user",
-        "delivery_status",
+        "item",
     )
     
     list_filter = (
+        "status",
         "user",
-        "delivery_status",
-    )
-    
-    filter_horizontal = (
-        "option",
-    )
-    
-@admin.register(models.WishList)
-class WishListAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (
-            "Wish List Info",
-            {
-                "fields" : (
-                    "user",
-                    "image",
-                    "name",
-                    "count",
-                    "price",
-                    "option",
-                )
-            }
-        ),
-    )
-    
-    list_display = (
-        "user",
-        "name",
-        "count",
-        "price",
-    )
-    
-    list_filter = (
-        "user",
-    )
-    
-    filter_horizontal = (
-        "option",
-    )
-    
-@admin.register(models.ShoppingList)
-class ShoppingListAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (
-            "Shopping List Info",
-            {
-                "fields" : (
-                    "user",
-                    "image",
-                    "name",
-                    "count",
-                    "price",
-                    "option",
-                )
-            }
-        ),
-    )
-    
-    list_display = (
-        "user",
-        "name",
-        "count",
-        "price",
-    )
-    
-    list_filter = (
-        "user",
-    )
-    
-    filter_horizontal = (
-        "option",
+        "item",
     )

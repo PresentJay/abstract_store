@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    {{item.name}}
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="w-full justify-center">
+        <div class="flex justify-center mb-5 border-b mx-40">
+            <div>
+                <div>
+                    <div class="h-64 w-64 bg-cover rounded-md" style="background-image:url({{item.thumbnail}})"></div>
+                </div>
+            </div>
+
+            <div class="ml-20 w-2/5">
+
+                <div class="flex items-center mb-3">
+                    <span class="w-40">PRICE</span>
+                    <span class="font-semibold">{{item.price}}원</span>
+                </div>
+
+                <div class="flex items-center mb-3">
+                    <span class="w-40">COMMENT</span>
+                    <span class="text-sm w-64">{{item.shorten_description}}</span>
+                </div>
+
+                <div class="flex items-center mb-3">
+                    <span class="w-40">OPTION</span>
+                    <form method = "post" action = "{% url 'lists:order' item.pk %}">
+                    {% csrf_token %}
+                    <select class="bg-gray-200 rounded-md" name="option">
+                        <option selected="selected" disabled>옵션 선택</option>
+                        <option disabled>-----------</option>
+                        {% for option in item.options.all %}
+                            <option value="{{option.pk}}">{{option.name}} +{{option.extra_money}}원</option>
+                        {% endfor %}
+                    </select>
+                        
+                </div>
+
+                <div class="flex justify-center mb-5">
+                    <button type="submit" class="item_btn bg-gray-700 hover:bg-gray-900 text-white">주문하기</button></form>
+                    <button class="item_btn bg-gray-200 hover:bg-gray-400"><a href="#">장바구니</a></button>
+                    <button class="item_btn bg-gray-200 hover:bg-gray-400"><a href="#">찜하기</a></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-5 mx-40 flex justify-center">
+            <div>{{item.description|safe}}</div>
+        </div>
+
+        <ul class="flex items-center text-sm font-medium mx-40">
+            <li class="nav_link cursor-pointer"><a>Review</a></li>
+            <li class="nav_link cursor-pointer"><a>QnA</a></li>
+            <li class="nav_link cursor-pointer"><a>MyPage</a></li>
+        </ul>
+
+        <div class="border-t mx-40">
+            {% for review in item.reviews.all %}
+                <div>
+                    <p>{{review.title}} | {{review.content}} | {{review.user.name}} | {{review.created|date:'F Y'}}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="border-t mx-40" style="display:none">
+            {% for review in item.reviews.all %}
+                <div>
+                    <p>{{review.title}} | {{review.content}} | {{review.user.name}} | {{review.created|date:'F Y'}}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock content %}

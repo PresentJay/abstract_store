@@ -6,13 +6,9 @@ from . import models
 class PhotoInline(admin.TabularInline):
     model = models.Photo
     
-class ThumbnailInline(admin.TabularInline):
-    model = models.Thumbnail
-    
 @admin.register(models.Item)
 class ItemAdmin(admin.ModelAdmin):
     inlines= (
-        ThumbnailInline,
         PhotoInline,
     )
     
@@ -28,7 +24,6 @@ class ItemAdmin(admin.ModelAdmin):
                     "status",
                     "price",
                     "description",
-                    "option",
                     "count",
                     "owner",
                 )
@@ -48,7 +43,6 @@ class ItemAdmin(admin.ModelAdmin):
         "owner",
         "tag",
         "category",
-        "option",
         "price",
         "status",
     )
@@ -56,7 +50,6 @@ class ItemAdmin(admin.ModelAdmin):
     filter_horizontal = (
         "tag",
         "category",
-        "option",
     )
 
 @admin.register(models.Tag)
@@ -79,16 +72,18 @@ class OptionAdmin(admin.ModelAdmin):
             "Option Info",
             {
                 "fields" : (
-                    "option_name",
+                    "name",
                     "extra_money",
+                    "item",
                 )
             }
         ),
     )
     
     list_display = (
-        "option_name",
+        "name",
         "extra_money",
+        "item",
     )
 
 @admin.register(models.Category)
@@ -136,32 +131,3 @@ class PhotoAdmin(admin.ModelAdmin):
     def get_photo(self, obj):
         return mark_safe(f'<img width="50px" src="{obj.file.url}"/>')
     get_photo.short_description = "Photo"
-    
-@admin.register(models.Thumbnail)
-class ThumbnailAdmin(admin.ModelAdmin):
-    fieldsets = (
-        (
-            "Thumbnail Info",
-            {
-                "fields" : (
-                    "file",
-                )
-            }
-        ),
-        (
-            "Related Info",
-            {
-                "fields" : (
-                    "item",
-                )
-            }
-        ),
-    )
-    
-    list_display = (
-        "get_thumbnail",
-    )
-    
-    def get_thumbnail(self, obj):
-        return mark_safe(f'<img width="50px" src="{obj.file.url}"/>')
-    get_thumbnail.short_description = "Thumbnail"

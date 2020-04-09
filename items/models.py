@@ -1,6 +1,5 @@
 from django.db import models
 from core import models as core_models
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
@@ -17,11 +16,12 @@ class Category(models.Model):
         return self.category_name
     
 class Option(models.Model):
-    option_name = models.CharField(max_length=1024)
+    name = models.CharField(max_length=1024)
     extra_money = models.IntegerField()
+    item = models.ForeignKey("Item", related_name="options", on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.option_name
+        return self.name
     
 class Item(core_models.TimeStampedModel):
     name = models.CharField(max_length=80)
@@ -31,7 +31,6 @@ class Item(core_models.TimeStampedModel):
     status = models.BooleanField(default=True)
     price = models.IntegerField()
     description = RichTextUploadingField(null=True, blank=True)
-    option = models.ManyToManyField("Option", related_name="items", blank=True)
     count = models.IntegerField()
     owner = models.ForeignKey("users.User", related_name="items", on_delete=models.CASCADE)
     
@@ -40,10 +39,20 @@ class Item(core_models.TimeStampedModel):
     def __str__(self):
         return self.name
     
-class Thumbnail(models.Model):
-    file = models.ImageField(upload_to="item_thumbnails")
-    item = models.ForeignKey("items.Item",related_name="item_thumbnails" , on_delete=models.CASCADE, null = True, blank=True)
+    def thumbnail(self):
+        try:
+            photo, = self.photos.all()[:1]
+            return photo.file.url
+        except ValueError:
+            return None
+        
+    def get_option(self):
+        try:
+            option, = self.options.all()
+            return option
+        except ValueError:
+            return None
     
 class Photo(models.Model):
     file = models.ImageField(upload_to="item_photos")
-    item = models.ForeignKey("Item",related_name="item_photos" , on_delete=models.CASCADE, null = True, blank=True)
+    item = models.ForeignKey("Item",related_name="photos" , on_delete=models.CASCADE, null = True, blank=True)

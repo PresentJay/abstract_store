@@ -42,12 +42,12 @@ DJANGO_AOOS = [
 ]
 
 PROJECT_APPS =[
-    "boards.apps.BoardsConfig",
     "items.apps.ItemsConfig",
     "lists.apps.ListsConfig",
-    "photos.apps.PhotosConfig",
     "users.apps.UsersConfig",
     "core.apps.CoreConfig",
+    "qnas.apps.QnasConfig",
+    "reviews.apps.ReviewsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_AOOS + PROJECT_APPS
@@ -131,6 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 AUTH_USER_MODEL = "users.User"
 
