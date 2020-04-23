@@ -38,3 +38,29 @@ class OrderListAdmin(admin.ModelAdmin):
         "user",
         "item",
     )
+    
+@admin.register(models.FavList)
+class FavListAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (
+            "Favourite List Info",
+            {
+                "fields" : (
+                    "user",
+                    "items",
+                )
+            }
+        ),
+    )
+    
+    list_display = (
+        "user",
+    )
+    
+    list_filter = (
+        "user",
+    )
+    
+    filter_horizontal = (
+        "items",
+    )

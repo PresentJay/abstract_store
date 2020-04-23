@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, reverse
-from . import models
+from django.shortcuts import redirect, reverse
+from django.views.generic import TemplateView
 from items import models as item_models
 from users import models as user_models
+from . import models
 
-# Create your views here.
 def create_order(request, item_pk):
     user = request.user
     option_pk = request.POST['option']
@@ -22,3 +22,14 @@ def create_order(request, item_pk):
         return redirect(reverse("core:home"))
     except models.OrderList.DoesNotExist:
         return redirect(reverse("core:home"))
+    
+def add_fav(request, item_pk):
+    item = item_models.Item.objects.get_or_none(pk=item_pk)
+    if item is not None:
+        the_list, _ = models.FavList.objects.get_or_create(user=request.user)
+        the_list.items.add(item)
+    return redirect(reverse("items:detail", kwargs={"pk":item_pk}))
+
+class SeeFavsView(TemplateView):
+    
+    template_name = "lists/list_detail.html"

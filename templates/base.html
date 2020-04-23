@@ -11,10 +11,12 @@
     </head>
 
     <body class="text-gray-800 font-light">
+        
         <header>
             {% include "partials/nav.html" %}
         </header>
-        <div class="border-b-2 flex justify-between items-center py-2">
+
+        <div class="border-b-2 flex justify-between items-center py-2 mt-24">
             <a href="{% url "core:home" %}" class="ml-6">
                 <img class="rounded-lg" src="{% static 'img/Logo.gif' %}" />
             </a>

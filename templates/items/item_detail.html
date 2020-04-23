@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load on_favs %}
 
 {% block page_title %}
     {{item.name}}
@@ -6,8 +7,8 @@
 
 {% block content %}
 
-    <div class="w-full justify-center">
-        <div class="flex justify-center mb-5 border-b mx-40">
+    <div class="w-3/4 justify-center mx-auto">
+        <div class="flex justify-center mb-5 border-b">
             <div>
                 <div>
                     <div class="h-64 w-64 bg-cover rounded-md" style="background-image:url({{item.thumbnail}})"></div>
@@ -26,40 +27,44 @@
                     <span class="text-sm w-64">{{item.shorten_description}}</span>
                 </div>
 
-                <div class="flex items-center mb-3">
-                    <span class="w-40">OPTION</span>
-                    <form method = "post" action = "{% url 'lists:order' item.pk %}">
-                    {% csrf_token %}
-                    <select class="bg-gray-200 rounded-md" name="option">
-                        <option selected="selected" disabled>옵션 선택</option>
-                        <option disabled>-----------</option>
-                        {% for option in item.options.all %}
-                            <option value="{{option.pk}}">{{option.name}} +{{option.extra_money}}원</option>
-                        {% endfor %}
-                    </select>
-                        
-                </div>
+                <form method = "POST" action = "{% url 'lists:order' item.pk %}">
+                    <div class="flex items-center mb-3">
+                        <span class="w-40">OPTION</span>
+                        {% csrf_token %}
+                        <select class="bg-gray-200 rounded-md" name="option">
+                            <option selected="selected" disabled>옵션 선택</option>
+                            <option disabled>-----------</option>
+                            {% for option in item.options.all %}
+                                <option value="{{option.pk}}">{{option.name}} +{{option.extra_money}}원</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                <div class="flex justify-center mb-5">
-                    <button type="submit" class="item_btn bg-gray-700 hover:bg-gray-900 text-white">주문하기</button></form>
-                    <button class="item_btn bg-gray-200 hover:bg-gray-400"><a href="#">장바구니</a></button>
-                    <button class="item_btn bg-gray-200 hover:bg-gray-400"><a href="#">찜하기</a></button>
-                </div>
-
+                    <div class="flex justify-center mb-5">
+                        <button class="item_btn bg-gray-700 hover:bg-gray-900 text-white">주문하기</button></form>
+                        <button class="item_btn bg-gray-200 hover:bg-gray-400"><a href="#">장바구니</a></button>
+                        {% if user.is_authenticated %}
+                            {% on_favs item as on_favs_boolean %}
+                            {% if on_favs_boolean %}
+                            {% else %}
+                                <a class="item_btn bg-gray-200 hover:bg-gray-400" href="{% url 'lists:add-favs' item.pk %}">찜하기</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
             </div>
         </div>
 
-        <div class="mb-5 mx-40 flex justify-center">
+        <div class="mb-5">
             <div>{{item.description|safe}}</div>
         </div>
 
-        <ul class="flex items-center text-sm font-medium mx-40">
+        <ul class="flex items-center text-sm font-medium">
             <li class="nav_link cursor-pointer"><a>Review</a></li>
             <li class="nav_link cursor-pointer"><a>QnA</a></li>
             <li class="nav_link cursor-pointer"><a>MyPage</a></li>
         </ul>
 
-        <div class="border-t mx-40">
+        <div class="border-t">
             {% for review in item.reviews.all %}
                 <div>
                     <p>{{review.title}} | {{review.content}} | {{review.user.name}} | {{review.created|date:'F Y'}}</p>
@@ -67,7 +72,7 @@
             {% endfor %}
         </div>
 
-        <div class="border-t mx-40" style="display:none">
+        <div class="border-t" style="display:none">
             {% for review in item.reviews.all %}
                 <div>
                     <p>{{review.title}} | {{review.content}} | {{review.user.name}} | {{review.created|date:'F Y'}}</p>

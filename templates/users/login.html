@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Login
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <div class="container mx-auto my-10 flex flex-col items-center border p-10">
+        {% include 'mixins/auth/auth_form.html' with form=form cta="Log in" %}
+    </div>
+{% endblock content %}
