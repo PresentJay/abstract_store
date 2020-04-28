@@ -72,12 +72,13 @@
             {% endfor %}
         </div>
 
-        <div class="border-t" style="display:none">
-            {% for review in item.reviews.all %}
-                <div>
-                    <p>{{review.title}} | {{review.content}} | {{review.user.name}} | {{review.created|date:'F Y'}}</p>
-                </div>
-            {% endfor %}
+        <div class="border-t">
+            <form action="{% url 'reviews:create' item.pk %}" method="POST" >
+                {% csrf_token %}
+                title <input name="title"/>
+                content <input name="content"/>
+                <button class="w-full bg-gray-300 rounded-lg py-3 my-3 text-xl hover:bg-gray-500">리뷰 작성</button>
+            </form>
         </div>
 
     </div>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    리뷰 작성
+{% endblock page_title %}
+
+{% block content %}
+    <div class="container flex justify-center mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+            {{form}}
+            <button class="w-full bg-gray-300 rounded-lg py-5 my-3 text-xl hover:bg-gray-500">리뷰 작성</button>
+        </form>
+    </div>
+{% endblock content %}

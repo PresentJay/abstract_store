@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    상품 추가
+{% endblock page_title %}
+
+{% block content %}
+    <div class="container flex justify-center mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            <button class="w-full bg-gray-300 rounded-lg py-5 my-3 text-xl hover:bg-gray-500">상품 추가</button>
+        </form>
+    </div>
+{% endblock content %}
