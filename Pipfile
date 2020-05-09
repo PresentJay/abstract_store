@@ -6,10 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "==2.2.5"
 django-phone-field = "*"
-pillow = "*"
 django-ckeditor = "*"
+Django = "==2.2.5"
+Pillow = "*"
+pipenv-to-requirements = "*"
 
 [requires]
 python_version = "3.7"
