@@ -9,26 +9,13 @@ autopep8 = "*"
 
 [packages]
 django-phone-field = "*"
-<<<<<<< HEAD
 django-ckeditor = "*"
 Django = "==2.2.5"
 Pillow = "*"
 pipenv-to-requirements = "*"
-=======
-pillow = "*"
-django-countries = "*"
-django-seed = "*"
-django-dotenv = "*"
-requests = "*"
-ckeditor = "*"
->>>>>>> 439994df0e383dceeb9714e32fa48acb51b0c6fa
 
 [requires]
 python_version = "3.7"
 
 [pipenv]
-<<<<<<< HEAD
 allow_prereleases = true
-=======
-allow_prereleases = true
->>>>>>> 439994df0e383dceeb9714e32fa48acb51b0c6fa
