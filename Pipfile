@@ -4,13 +4,26 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
+autopep8 = "*"
 
 [packages]
 django-phone-field = "*"
+<<<<<<< HEAD
 django-ckeditor = "*"
 Django = "==2.2.5"
 Pillow = "*"
 pipenv-to-requirements = "*"
+=======
+pillow = "*"
+django-countries = "*"
+django-seed = "*"
+django-dotenv = "*"
+requests = "*"
+>>>>>>> adjusting branches
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
