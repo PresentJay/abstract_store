@@ -33,3 +33,7 @@ def add_fav(request, item_pk):
 class SeeFavsView(TemplateView):
     
     template_name = "lists/list_detail.html"
+    
+class OrderList(TemplateView):
+    
+    template_name = "lists/orderlist_detail.html"

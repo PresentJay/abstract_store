@@ -13,7 +13,7 @@
                 ({{user.list.items.count}})
                 {% endif %}</a>
         </li>
-        <li class="nav_link"><a href="#">Order</a></li>
+        <li class="nav_link"><a href="{% url 'lists:orderlists' %}">Order</a></li>
         <li class="nav_link"><a href="#">MyPage</a></li>
         {% else %}
         <li class="nav_link"><a href="{% url 'users:login' %}">Log in</a></li>

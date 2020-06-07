@@ -42,7 +42,8 @@
 
                     <div class="flex justify-center mb-5">
                         <button class="item_btn bg-gray-700 hover:bg-gray-900 text-white">주문하기</button></form>
-                        <button class="item_btn bg-gray-200 hover:bg-gray-400"><a href="#">장바구니</a></button>
+                        <a class="item_btn bg-gray-200 hover:bg-gray-400" href="#">장바구니</a>
+                        <a class="item_btn bg-gray-200 hover:bg-gray-400" href="{% url 'items:edit' item.pk %}">편집</a>
                         {% if user.is_authenticated %}
                             {% on_favs item as on_favs_boolean %}
                             {% if on_favs_boolean %}

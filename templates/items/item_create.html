@@ -5,12 +5,14 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div class="container flex justify-center mx-auto">
+    <div class="container flex justify-center mx-auto bg-gray-200 rounded-lg text-bold">
         <form method="POST">
-            {% csrf_token %}
-            {{form.media}}
-            {{form.as_p}}
-            <button class="w-full bg-gray-300 rounded-lg py-5 my-3 text-xl hover:bg-gray-500">상품 추가</button>
+            <div class="my-5">
+                {% csrf_token %}
+                {{form.media}}
+                {{form.as_p}}
+            </div>
+            <button class="w-full bg-green-300 rounded-lg py-5 my-3 text-xl hover:bg-green-500">다음</button>
         </form>
     </div>
 {% endblock content %}

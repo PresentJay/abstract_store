@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Edit Photo
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <div class="container mx-auto my-10 flex flex-col">
+
+        <div class="my-10 w-full">
+            <a href="{% url 'items:add-photo' item.pk %}" class="rounded-md bg-teal-500 w-40 text-center text-xl py-3 px-3 hover:bg-teal-700">Upload Photo</a>
+        </div>
+
+        {% for photo in item.photos.all %}
+            <div class="mb-5 border p-6 border-gray-400 flex justify-between">
+
+                <div class="flex items-start">
+                    <img src="{{photo.file.url}}" class="w-32 h-32" />
+                    {% comment %} <span class="ml-5 text-xl">{{photo.caption}}</span> {% endcomment %}
+                </div>
+
+                <div class="flex flex-col w-1/5">
+                    <a class="btn-link mb-5 bg-teal-500" href="{% url 'items:edit-photo' item.pk photo.pk %}">Edit</a>
+                    <a class="btn-link bg-red-600" href="{% url 'items:delete-photo' item.pk photo.pk %}">Delete</a>
+                </div>
+
+            </div>
+        {% endfor %}
+
+        <div class="flex justify-between mt-5">
+            <a href="{% url 'items:edit' item.pk %}" class="text-red-500 font-medium text-xl">이전</a>
+            <a href="{% url 'core:home' %}" class="text-teal-500 font-medium text-xl">완료</a>
+        </div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Update Item
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <div class="container flex flex-col justify-center mx-auto bg-gray-200 rounded-lg text-bold">
+        <div class="my-5">
+            {% csrf_token %}
+            {{form.media}}
+            {% include 'mixins/item/item_form.html' with form=form cta="Update Item" %}
+            <div class="mt-5">
+                <a href="{% url 'items:photos' item.pk %}" class="text-teal-500 font-medium">Edit Photos</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

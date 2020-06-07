@@ -19,4 +19,17 @@ class CreateItemForm(forms.ModelForm):
         item = super().save(commit=False)
         return item
     
+class CreatePhotoForm(forms.ModelForm):
+    
+    class Meta:
+        model = models.Photo
+        fields = (
+            "file",
+        )
+        
+    def save(self, pk, *args, **kwargs):
+        photo = super().save(commit=False)
+        item = models.Item.objects.get(pk=pk)
+        photo.item = item
+        photo.save()
     
