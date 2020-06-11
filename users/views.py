@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 from django.urls import reverse_lazy
-from . import forms
+from . import forms, models
+from items import models as item_models
 
 # Create your views here.
 
@@ -48,3 +49,13 @@ class SignUpView(FormView):
             login(self.request, user)
 
         return super().form_valid(form)
+
+def add_fav(request, item_pk):
+    item = item_models.Item.objects.get_or_none(pk=item_pk)
+    if item is not None:
+        the_list, _ = models.FavList.objects.get_or_create(user=request.user)
+        the_list.items.add(item)
+    return redirect(reverse("items:detail", kwargs={"pk":item_pk}))
+    
+class SeeFavsView(TemplateView):
+    template_name = "users/favlist_list.html"

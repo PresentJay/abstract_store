@@ -25,6 +25,8 @@ sqlparse = "==0.3.1"
 virtualenv-clone = "==0.5.4"
 virtualenv = "==20.0.20"
 zipp = "==3.1.0"
+django-sslserver = "==0.22"
+django-seed = "*"
 
 [requires]
 python_version = "3.7"

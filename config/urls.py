@@ -22,7 +22,7 @@ urlpatterns = [
     path("", include("core.urls", namespace="core")),
     path("users/", include("users.urls", namespace="users")),
     path("items/", include("items.urls", namespace="items")),
-    path("lists/", include("lists.urls", namespace="lists")),
+    path("orders/", include("orders.urls", namespace="orders")),
     path("reviews/", include("reviews.urls", namespace="reviews")),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),

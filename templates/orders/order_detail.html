@@ -12,15 +12,16 @@
 
         <div class="container mx-auto pb-10 ">
             <div class="mx-20 mb-10 rounded-lg bg-gray-600 px-10 py-3">
-                {% for order in user.orderlists.all  %}
+                {% for order in user.orders.all  %}
                     <div class="flex my-3 bg-gray-300 rounded-lg px-3 py-3">
-                        <div href="{% url 'items:detail' order.item.pk %}" class="w-16 h-16 bg-cover bg-center rounded-lg" style="background-image: url({{order.item.thumbnail}})"></div>
+                        <div class="w-16 h-16 bg-cover bg-center rounded-lg" style="background-image: url({{order.thumnail}})"></div>
                         <div class="ml-5 my-3 font-bold text-2xl">
-                            <span class="text-teal-500 ">{{order.status}}</span>
-                            <span>{{order.item.name}}</span>
-                            <span>{{order.option}}</span>
-                            <span>{{order.price}}</span>
-                            <span>{{order.count}}</span>
+                            <span class="text-teal-500 ">{{order.state}}</span>
+                            <span>{{order}}</span>
+                            <span>{{order.address}}</span>
+                            <span>{{order.confirmed_date}}</span>
+                            <span>{{order.shipping_started_date}}</span>
+                            <span>{{order.completed_date}}</span>
                         </div>
                     </div>
                 {% endfor %}
