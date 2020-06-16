@@ -43,11 +43,11 @@ DJANGO_AOOS = [
 
 PROJECT_APPS =[
     "items.apps.ItemsConfig",
-    "lists.apps.ListsConfig",
     "users.apps.UsersConfig",
     "core.apps.CoreConfig",
     "qnas.apps.QnasConfig",
     "reviews.apps.ReviewsConfig",
+    "orders.apps.OrdersConfig",
 ]
 
 INSTALLED_APPS = DJANGO_AOOS + PROJECT_APPS

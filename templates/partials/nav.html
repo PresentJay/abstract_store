@@ -8,12 +8,12 @@
     <ul class="flex items-center text-sm font-medium h-full">
         {% if user.is_authenticated %}
         <li class="nav_link"><a href="{% url 'users:logout' %}">Log out</a></li>
-        <li class="nav_link"><a href="{% url 'lists:see-favs' %}">Favs
-                {% if user.list.items.count != '' %}
-                ({{user.list.items.count}})
+        <li class="nav_link"><a href="{% url 'users:see-favs' %}">Favs
+                {% if user.lists.items.count != '' %}
+                ({{user.lists.items.count}})
                 {% endif %}</a>
         </li>
-        <li class="nav_link"><a href="#">Order</a></li>
+        <li class="nav_link"><a href="{% url 'orders:detail' %}">Order</a></li>
         <li class="nav_link"><a href="#">MyPage</a></li>
         {% else %}
         <li class="nav_link"><a href="{% url 'users:login' %}">Log in</a></li>
